@@ -8,7 +8,7 @@ interface PopulateDBProps {
 }
 
 const PopulateDB: React.FC<PopulateDBProps> = () => {
-  const { mutate } = api.post._populateDb.useMutation();
+  const { mutate } = api.post._populateFakeUsers.useMutation();
   return (
     <button
       onClick={() => {

@@ -33,7 +33,7 @@ export const postRouter = createTRPCRouter({
     });
   }),
 
-  _populateDb: publicProcedure
+  _populateFakeUsers: publicProcedure
     .input(z.object({ count: z.number() }))
     .mutation(async ({ ctx, input }) => {
       // populate db with some data
