@@ -8,9 +8,12 @@ interface PopulateDBProps {
 }
 
 const PopulateDB: React.FC<PopulateDBProps> = () => {
-  const { mutate } = api.post._populateFakeUsers.useMutation();
+  const { mutate } = api.post._populateFakeUsers.useMutation({
+    onSuccess: () => (window.location.href = "/"),
+  });
   return (
     <button
+      className="rounded-full bg-blue-600 px-4 py-2 font-semibold text-white hover:bg-blue-500"
       onClick={() => {
         const count = prompt("How many users do you want to create?");
         if (!count) return;
@@ -19,7 +22,7 @@ const PopulateDB: React.FC<PopulateDBProps> = () => {
         mutate({ count: countNum });
       }}
     >
-      Populate DB
+      Click to Populate DB
     </button>
   );
 };
