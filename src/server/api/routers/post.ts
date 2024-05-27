@@ -2,7 +2,10 @@ import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 
+import { faker } from "@faker-js/faker";
+
 export const postRouter = createTRPCRouter({
+  // This is the example procedure we call from the homepage
   hello: publicProcedure
     .input(z.object({ text: z.string() }))
     .query(({ input }) => {
@@ -29,4 +32,16 @@ export const postRouter = createTRPCRouter({
       orderBy: { createdAt: "desc" },
     });
   }),
+
+  _populateDb: publicProcedure
+    .input(z.object({ count: z.number() }))
+    .mutation(async ({ ctx, input }) => {
+      // populate db with some data
+      await ctx.db.user.createMany({
+        data: Array.from({ length: input.count }).map((_) => ({
+          email: faker.internet.email(),
+          name: faker.person.fullName(),
+        })),
+      });
+    }),
 });

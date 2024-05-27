@@ -8,10 +8,12 @@
 # testing
 /coverage
 
-# database
-/prisma/db.sqlite
-/prisma/db.sqlite-journal
-db.sqlite
+# We dont ignore db because we want to provide
+# it in a good state for the user to use
+# /prisma/db.sqlite
+# /prisma/db.sqlite-journal
+# db.sqlite
+
 
 # next.js
 /.next/
